@@ -9,6 +9,8 @@ import org.junit.Test;
 
 import docsearch.model.Document;
 import docsearch.model.Paragraph;
+import docsearch.model.Sentence;
+import docsearch.model.Word;
 import docsearch.pipes.Connector;
 import docsearch.pipes.Extractor;
 import docsearch.pipes.Filter;
@@ -21,6 +23,10 @@ public class ATest {
     @Test
     public void testA() {
         List<Document> documentList = new ArrayList<>();
+        documentList.add(
+                d(p(s(w("Hello"), w("world"))))
+        );
+        
         DocumentSource source = new MemoryDocumentSource(documentList);
         
         Extractor<Document, Paragraph> paragraphExtractor1 = new Extractor<>();
@@ -43,6 +49,28 @@ public class ATest {
         connector2.run();
         connector3.run();
         connector4.run();
+    }
+    
+    @Test
+    public void printDocTest() {
+        Document doc = d(p(s(w("Hello"), w("world")), s(w("Here"), w("is"), w("another"), w("sentence"))), p(s(w("What's"), w("up?"))));
+        System.out.println(doc);
+    }
+    
+    private Document d(Paragraph... paragraphs) {
+        return new Document(paragraphs);
+    }
+    
+    private Paragraph p(Sentence... sentences) {
+        return new Paragraph(sentences);
+    }
+    
+    private Sentence s(Word... words) {
+        return new Sentence(words);
+    }
+    
+    private Word w(String content) {
+        return new Word(content);
     }
 
 }
