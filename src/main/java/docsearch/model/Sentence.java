@@ -27,4 +27,8 @@ public class Sentence {
         return sb.toString();
     }
 
+    public List<Word> getWords() {
+        return words;
+    }
+
 }

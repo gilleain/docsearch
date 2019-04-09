@@ -21,4 +21,8 @@ public class Paragraph {
         return sb.toString();
     }
 
+    public List<Sentence> getSentences() {
+        return sentences;
+    }
+
 }

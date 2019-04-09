@@ -26,4 +26,8 @@ public class Document {
         return sb.toString();
     }
 
+    public List<Paragraph> getParagraphs() {
+        return paragraphs;
+    }
+
 }
